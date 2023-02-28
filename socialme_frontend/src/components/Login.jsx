@@ -10,8 +10,18 @@ import jwt_decode from 'jwt-decode'
 
 const Login = () => {
   const responseGoogle = (response) => {
-    console.log(response);
-
+    //let's set them to local storage
+    localStorage.setItem('user', JSON.stringify(response.profileObj));
+   //time to deconstruct some properties
+    const { name, googleId, imageUrl} = response.profileObj;
+//transfer the Google user info to a Sanity document so it can be saved to the db
+//this doc contains the fields that we have specified for our Sanity user schema (user.js)
+const doc = {
+  _id: googleId,
+  _type: 'user',
+  userName: name,
+  image: imageUrl
+}
   }
     return (
         <GoogleOAuthProvider clientId={process.env.REACT_APP_GOOGLE_API_TOKEN}>
