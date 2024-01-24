@@ -1,0 +1,31 @@
+body {
+  background: gold;
+}
+.top-title {
+  font-size: 60px;
+}
+
+.sub-text {
+  font-size: 30px;
+}
+
+.text {
+  text-align: left;
+}
+@media (orientation: landscape) and (max-width: 300px) {
+  body {
+    background: red;
+  }
+}
+
+@media all and (orientation: portrait) {
+  body {
+    background: orange;
+  }
+}
+
+@media print {
+  .top-title {
+    color: pink;
+  }
+}

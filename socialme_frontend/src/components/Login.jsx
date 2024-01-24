@@ -5,10 +5,13 @@ import shareVideo from '../assets/share.mp4';
 import logo from '../assets/logowhite.png';
 import jwt_decode from 'jwt-decode'
 
+import { client } from '../client';
+
 
 
 
 const Login = () => {
+  const navigate = useNavigate();
   const responseGoogle = (response) => {
     //let's set them to local storage
     localStorage.setItem('user', JSON.stringify(response.profileObj));
@@ -22,6 +25,11 @@ const doc = {
   userName: name,
   image: imageUrl
 }
+
+client.createIfNotExists(doc)
+.then(() => {
+  navigate('/', {replace: true})
+})
   }
     return (
         <GoogleOAuthProvider clientId={process.env.REACT_APP_GOOGLE_API_TOKEN}>
